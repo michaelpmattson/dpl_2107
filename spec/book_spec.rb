@@ -30,4 +30,17 @@ RSpec.describe Book do
       expect(book.publication_year).to eq("1960")
     end
   end
+
+  describe '#checkout' do
+    it 'adds 1 to checkout_times' do
+      book = Book.new({author_first_name: "Harper", author_last_name: "Lee", title: "To Kill a Mockingbird", publication_date: "July 11, 1960"})
+
+      expect(book.checkout_times).to eq(0)
+
+      book.checkout
+      book.checkout
+
+      expect(book.checkout_times).to eq(2)
+    end
+  end
 end
