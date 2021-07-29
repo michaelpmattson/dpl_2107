@@ -141,16 +141,12 @@ RSpec.describe Library do
 
       dpl.checkout(jane_eyre)
       dpl.return(jane_eyre)
-
       dpl.checkout(jane_eyre)
-      dpl.checkout(villette)
 
       dpl.checkout(mockingbird)
       dpl.return(mockingbird)
-
       dpl.checkout(mockingbird)
       dpl.return(mockingbird)
-
       dpl.checkout(mockingbird)
 
       expect(dpl.most_popular_book).to eq(mockingbird)
