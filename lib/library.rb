@@ -25,16 +25,12 @@ class Library
   end
 
   def checkout(book)
-    if !@books.include?(book)
+    if @books.include?(book) && !@checked_out_books.include?(book)
+      @checked_out_books << book
+      book.checkout
+      true
+    else
       false
-    elsif @books.include?(book)
-      if @checked_out_books.include?(book)
-        false
-      else
-        @checked_out_books << book
-        book.checkout
-        true
-      end
     end
   end
 
@@ -43,13 +39,8 @@ class Library
   end
 
   def most_popular_book
-    most_popular_book = books.first
-    @books.each do |book|
-      # require "pry"; binding.pry
-      if book.checkout_times > most_popular_book.checkout_times
-        most_popular_book = book
-      end
+    @books.max_by do |book|
+      book.checkout_times
     end
-    most_popular_book
   end
 end
